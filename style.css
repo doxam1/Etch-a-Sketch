@@ -1,0 +1,23 @@
+body {
+    background-color: black;
+    height: 97vh;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.mainboard {
+    box-sizing: content-box;
+    display: flex;
+    flex-flow: column wrap;
+    width: 400px;
+    height: 400px;
+    border:2px solid white;
+    flex:1;
+}
+
+.square {
+    border:1px solid palevioletred;
+    box-sizing: border-box;
+}
+

@@ -2,22 +2,43 @@ body {
     background-color: black;
     height: 97vh;
     display: flex;
+    flex-flow: column;
     justify-content: center;
     align-items: center;
+    gap:16px;
 }
-
+.header {
+    font-family: Cinzel, serif;
+    color:white;
+}
 .mainboard {
     box-sizing: content-box;
     display: flex;
-    flex-flow: column wrap;
+    flex-flow: wrap;
     width: 400px;
     height: 400px;
     border:2px solid white;
-    flex:1;
 }
 
 .square {
     border:1px solid palevioletred;
     box-sizing: border-box;
+}
+.mainGameControlAndBoard {
+    display: flex;
+    flex-direction: row;
+    gap:36px;
+}
+
+.mainButtons {
+    display: flex;
+    flex-flow: column;
+    justify-content: space-around;
+    .btn {
+        background-color: cornflowerblue;
+        font-weight: 600;
+        width: 80px;
+        height: 40px;
+    }
 }
 

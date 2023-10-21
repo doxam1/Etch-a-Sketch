@@ -10,6 +10,9 @@ colorSquareOnMouseOver();
 //a flag variable for on/off coloring the board on when mouse is clicked and move together.
 let mouseClick = false;
 
+//variable declaration for color, starts with white;
+let color = 'white';
+
 // function for coloring the squares on mouse hoover AND mouse is clicked, or only when clicked.
 function colorSquareOnMouseOver () {
     squareAfterCreation.forEach(function (square) {
@@ -28,20 +31,6 @@ function colorSquareOnMouseOver () {
             colorSquare(e)};
     })};
 
-// function colorSquareOnClick () {
-//     squareAfterCreation.forEach(function (square) { 
-//         square.addEventListener('mousedown', (e) => {
-//             if (e.button == 0) {
-//             mouseClick = true;
-//             colorSquare(e);
-//       }})
-//         square.addEventListener('mouseup', (e) => {
-//             mouseClick = false;
-//             colorSquare(e);
-//         })
-//     })};
-
-
 //variable declaration for all auto buttons. (will change the class going forward)
 const btns = document.querySelectorAll('.btn');
 //function for auto select with buttons.
@@ -50,16 +39,34 @@ btns.forEach(function(button) {
         if (button.classList.contains('sixteen')) {
             appendSquares(4);
             squareAfterCreation = document.querySelectorAll('.square');
+            colorSquareOnMouseOver();
         } else if (button.classList.contains('sixtyfour')) {
             appendSquares(8);
             squareAfterCreation = document.querySelectorAll('.square');
+            colorSquareOnMouseOver();
         } else if (button.classList.contains('twohundredfiftysix')) {
             appendSquares(16);
             squareAfterCreation = document.querySelectorAll('.square');
-        }
-        colorSquareOnMouseOver ();
-    })  
-})
+            colorSquareOnMouseOver();
+        } else if (button.classList.contains('randomColor')) {
+            rainbowColoring = false;
+            randomColor();
+        } else if (button.classList.contains('white')) {
+            rainbowColoring = false;
+            color = 'white';
+        } else if (button.classList.contains('black')) {
+            rainbowColoring = false;
+            color = 'black'
+        } else if (button.classList.contains('reset')) {
+            squareAfterCreation.forEach(function(square) {
+                square.style.backgroundColor ='black';
+                squareAfterCreation = document.querySelectorAll('.square')
+            })};
+        });
+        //why i can't put it here? :
+        // colorSquareOnMouseOver();
+    }); 
+
 
 //function for building the squares div.
 function appendSquares (duplicates) {
@@ -73,16 +80,25 @@ function appendSquares (duplicates) {
     }
 }
 
+// rainbow color variables and listener.
+let rainbowColoring = false;
+rainbowColoringBtn = document.querySelector('.rainbow')
+rainbowColoringBtn.addEventListener('click', () => {rainbowColoring = true});
+
 //function for coloring the squares.
 // mouseclick is a flag for coloring only when mouse is clicked and is moving over.
 function colorSquare (z) {
-    if (mouseClick == true) {
-    if (z.target.style.background == 'white') {
-        z.target.style.background = 'black';
-    } else {
-    z.target.style.background = 'white';
-    }
-}};
+    if (mouseClick == true && rainbowColoring == true) {
+     z.target.style.background = '#' + (Math.floor(Math.random()*16777215).toString(16));
+    } else if (mouseClick == true){
+        z.target.style.background = color;
+    }};
+
+//function for random color generator
+function randomColor(){
+    color = '#' + (Math.floor(Math.random()*16777215).toString(16));
+};
+
 // variable for manual input
 const manualInputBtn = document.querySelector('.manualInputBtn');
 const manualInput = document.querySelector('#manualInput')
@@ -110,3 +126,5 @@ function manualInputSubmit () {
     colorSquareOnMouseOver();
     }
 };
+
+

@@ -6,11 +6,38 @@ appendSquares(8);
 let squareAfterCreation = document.querySelectorAll('.square');
 colorSquareOnMouseOver();
 
-// function for coloring the squares on mouse hoover.
+
+//a flag variable for on/off coloring the board on when mouse is clicked and move together.
+let mouseClick = false;
+
+// function for coloring the squares on mouse hoover AND mouse is clicked, or only when clicked.
 function colorSquareOnMouseOver () {
     squareAfterCreation.forEach(function (square) {
-    square.addEventListener('mouseover', colorSquare);
-})};
+        square.addEventListener('mouseover', (e) => {
+            e.preventDefault();
+            if (e.buttons == 1) {
+            mouseClick = true;
+            colorSquare(e)}})
+        square.addEventListener('mouseup', (e) => {
+            mouseClick = false;
+            colorSquare(e)})
+        square.onmousedown = (e) => {
+            mouseClick = true;
+            colorSquare(e)};
+    })};
+
+// function colorSquareOnClick () {
+//     squareAfterCreation.forEach(function (square) { 
+//         square.addEventListener('mousedown', (e) => {
+//             if (e.button == 0) {
+//             mouseClick = true;
+//             colorSquare(e);
+//       }})
+//         square.addEventListener('mouseup', (e) => {
+//             mouseClick = false;
+//             colorSquare(e);
+//         })
+//     })};
 
 
 //variable declaration for all auto buttons. (will change the class going forward)
@@ -45,14 +72,15 @@ function appendSquares (duplicates) {
 }
 
 //function for coloring the squares.
-function colorSquare (e) {
-    if (e.target.style.background == 'white') {
-        e.target.style.background = 'black';
+// mouseclick is a flag for coloring only when mouse is clicked and is moving over.
+function colorSquare (z) {
+    if (mouseClick == true) {
+    if (z.target.style.background == 'white') {
+        z.target.style.background = 'black';
     } else {
-    e.target.style.background = 'white';
+    z.target.style.background = 'white';
     }
-}
-
+}};
 // variable for manual input
 const manualInputBtn = document.querySelector('.manualInputBtn');
 const manualInput = document.querySelector('#manualInput')

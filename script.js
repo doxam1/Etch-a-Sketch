@@ -19,9 +19,11 @@ function colorSquareOnMouseOver () {
             mouseClick = true;
             colorSquare(e)}})
         square.addEventListener('mouseup', (e) => {
+            e.preventDefault()
             mouseClick = false;
             colorSquare(e)})
         square.onmousedown = (e) => {
+            e.preventDefault()
             mouseClick = true;
             colorSquare(e)};
     })};

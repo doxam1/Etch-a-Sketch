@@ -51,6 +51,7 @@ btns.forEach(function(button) {
         } else if (button.classList.contains('randomColor')) {
             rainbowColoring = false;
             randomColor();
+            button.style.background = color;
         } else if (button.classList.contains('white')) {
             rainbowColoring = false;
             color = 'white';

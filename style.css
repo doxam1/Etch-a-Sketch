@@ -23,7 +23,7 @@ body {
 }
 
 .square {
-    border:1px solid palevioletred;
+    border:1px solid palevioletred; 
     box-sizing: border-box;
 }
 .mainGameControlAndBoard {
@@ -42,4 +42,8 @@ body {
     font-weight: 600;
     width: 80px;
     height: 40px;
+}
+
+.darkeningOn {
+    background-color: tomato;
 }

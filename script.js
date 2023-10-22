@@ -20,7 +20,7 @@ function colorSquareOnMouseOver () {
             e.preventDefault();
             if (e.buttons == 1) {
             mouseClick = true;
-            colorSquare(e)}})
+            colorSquare(e)}})           
         square.addEventListener('mouseup', (e) => {
             e.preventDefault()
             mouseClick = false;
@@ -60,6 +60,7 @@ btns.forEach(function(button) {
             color = 'black'
         } else if (button.classList.contains('reset')) {
             squareAfterCreation.forEach(function(square) {
+                square.style.opacity = 1;
                 square.style.backgroundColor ='black';
                 squareAfterCreation = document.querySelectorAll('.square')
             })};
@@ -88,12 +89,19 @@ rainbowColoringBtn.addEventListener('click', () => {rainbowColoring = true});
 
 //function for coloring the squares.
 // mouseclick is a flag for coloring only when mouse is clicked and is moving over.
+//added darkening affect using flags. 
 function colorSquare (z) {
-    if (mouseClick == true && rainbowColoring == true) {
-     z.target.style.background = '#' + (Math.floor(Math.random()*16777215).toString(16));
+    if (mouseClick == true && rainbowColoring == true && darkeningFlag == false) {
+         z.target.style.opacity = 1;
+         z.target.style.background = '#' + (Math.floor(Math.random()*16777215).toString(16));
+    } else if (mouseClick == true && darkeningFlag == true) {
+        if (z.target.style.opacity > 0) z.target.style.opacity -= .1;
     } else if (mouseClick == true){
+        if (darkeningFlag != true) z.target.style.opacity = 1;
         z.target.style.background = color;
-    }};
+
+    }
+};
 
 //function for random color generator
 function randomColor(){
@@ -127,5 +135,24 @@ function manualInputSubmit () {
     colorSquareOnMouseOver();
     }
 };
+
+
+// darkening effect functions and variables.
+// i used flags for this effect to work.
+darkeningBtn = document.querySelector('.opacity');
+darkeningBtn.addEventListener('click', function(e){
+    e.target.classList.toggle('darkeningOff')
+    e.target.classList.toggle('darkeningOn');
+    if (e.target.classList.contains('darkeningOn')) darken();
+    if (e.target.classList.contains('darkeningOff')) darkenOff();
+})
+let darkeningFlag = false;
+function darken(){
+    darkeningFlag = true;
+  }
+function darkenOff() {
+    darkeningFlag = false;
+  } 
+
 
 

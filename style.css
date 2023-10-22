@@ -23,7 +23,8 @@ body {
 }
 
 .square {
-    border:1px solid palevioletred; 
+    border:1px solid; 
+    /*  color for border - palevioletred */
     box-sizing: border-box;
 }
 .mainGameControlAndBoard {

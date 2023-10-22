@@ -143,8 +143,14 @@ darkeningBtn = document.querySelector('.opacity');
 darkeningBtn.addEventListener('click', function(e){
     e.target.classList.toggle('darkeningOff')
     e.target.classList.toggle('darkeningOn');
-    if (e.target.classList.contains('darkeningOn')) darken();
-    if (e.target.classList.contains('darkeningOff')) darkenOff();
+    if (e.target.classList.contains('darkeningOn')) {
+        e.target.textContent = 'Darkening On';
+        darken()
+    };
+    if (e.target.classList.contains('darkeningOff')){
+        e.target.textContent = 'Darkening Off';
+        darkenOff();
+    }
 })
 let darkeningFlag = false;
 function darken(){

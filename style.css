@@ -22,6 +22,35 @@ body {
     box-shadow: 5px 10px 8px #888888;
 }
 
+@media only screen and (max-width: 500px) {
+
+    body {
+        overflow: hidden;
+    }
+
+ .mainGameControlAndBoard {
+    width: 100vw;
+    height: auto;
+    flex-flow: column wrap;
+ }
+ .mainButtons, .leftButtons {
+    flex-direction: row !important;
+    margin-left: auto;
+    margin-right: auto;
+ }
+.btn {
+    width: 62px !important;
+    height: 31px !important;
+}
+.mainboard {
+    margin-left: auto;
+    margin-right: auto;
+}
+  
+
+}
+
+
 .square {
     border:1px solid; 
     /*  color for border - palevioletred */
